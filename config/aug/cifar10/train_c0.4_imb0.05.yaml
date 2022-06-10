@@ -1,0 +1,49 @@
+work_dir: work_dir/recognition_aug_cycle/cifar10_unif/cor0.4_imb0.05
+pretrain_dir: work_dir/recognition_cycle/cifar10_unif/cor0.4_imb0.05
+# feeder
+feeder: feeder.feeder_pretrain.SavedCIFAR
+train_feeder_args:
+  train_file: train_data.npy
+  label_file: train_labels.npy
+  true_label_file: true_labels.npy
+  transform: hard
+
+train_meta_feeder_args:
+  train_file: meta_train_data.npy
+  label_file: meta_train_labels.npy
+  true_label_file: meta_true_labels.npy
+  transform: hard
+
+test_feeder_args:
+  train_file: test_data.npy
+  label_file: test_labels.npy
+  true_label_file: test_labels.npy
+
+# model
+model: net.resnet_cifar.resnet32
+model_args:
+  num_classes: 10
+
+# vnet
+curvenet: net.curvenet.CurveNet
+curvenet_args:
+  factor: 1
+  bias: 0.02
+alpha_factor: 0.8
+
+#optim
+weight_decay: 5e-4
+base_lr: 0.1
+step: [80, 100]
+
+curvenet_lr: 1e-3
+
+# training
+device: [3]
+batch_size: 128 
+test_batch_size: 128
+num_epoch: 200
+eval_interval: 1
+
+
+

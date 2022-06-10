@@ -1,0 +1,57 @@
+work_dir: work_dir/recognition_cycle/cifar10_unif/cor0.4_imb0.05
+
+# feeder
+feeder: feeder.feeder.CIFAR10
+train_feeder_args:
+  root: ./data
+  meta: False
+  corruption_type: unif
+  corruption_prob: 0.4
+  transform: hard
+  imblance: True
+  imb_factor: 0.05
+train_meta_feeder_args:
+  root: ./data
+  meta: True
+test_feeder_args:
+  root: ./data
+  train: False
+
+#check feeder
+feeder_check: feeder.feeder_pretrain.SavedCIFAR
+pretrain_dir: work_dir/recognition_cycle/cifar10_unif/cor0.4_imb0.05
+check_train_feeder_args:
+  train_file: train_data.npy
+  label_file: train_labels.npy
+  true_label_file: true_labels.npy
+  transform: hard
+
+check_meta_train_feeder_args:
+  train_file: meta_train_data.npy
+  label_file: meta_train_labels.npy
+  true_label_file: meta_true_labels.npy
+
+check_test_feeder_args:
+  train_file: test_data.npy
+  label_file: test_labels.npy
+  true_label_file: test_labels.npy
+
+# model
+model: net.resnet_cifar.resnet32
+model_args:
+  num_classes: 10
+
+#optim
+weight_decay: 5e-4
+base_lr: 0.1
+step: [120]
+
+# training
+device: [1]
+batch_size: 128 
+test_batch_size: 128
+num_epoch: 300
+eval_interval: 1
+
+
+
