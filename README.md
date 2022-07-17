@@ -39,11 +39,11 @@ python python tools/gen_fig1_weight_cls.py work_dir/recognition_cycle/cifar10_un
 If CurveNet is useful for your research, please consider citing:
 
 ```
-@article{jiang2021delving,
+@inproceedings{jiang2022delving,
   title={Delving into Sample Loss Curve to Embrace Noisy and Imbalanced Data},
   author={Jiang, Shenwang and Li, Jianan and Wang, Ying and Huang, Bo and Zhang, Zhang and Xu, Tingfa},
-  journal={arXiv preprint arXiv:2201.00849},
-  year={2021}
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  year={2022}
 }
 ```
 ## Reference 
